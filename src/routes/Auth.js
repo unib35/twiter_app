@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { authService, firebaseInstance } from 'fbase';
 
 
-const Auth = () => {
+function Auth() {
 	const [Email, setEmail] = useState("");
 	const [Password, setPassword] = useState("");
 	const [NewAccount, setNewAccount] = useState(true);

@@ -15,7 +15,7 @@ const AppRouter = (props) => {
 				{props.Logged ? (
 					<>
 						<Route exact path="/">
-							<Home />
+							<Home userObj={props.userObj} />
 						</Route>
 						<Route exact path="/profile">
 						<Profile />

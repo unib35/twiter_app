@@ -4,13 +4,15 @@ import { authService } from 'fbase'
 
 function App() {
 	
-	const [Init, setInit] = useState(false)
-	const [Logged, setLogged] = useState(false)
+	const [Init, setInit] = useState(false);
+	const [Logged, setLogged] = useState(false);
+	const [UserObj, setUserObj] = useState(null);
 	
 	useEffect(() => {
 		authService.onAuthStateChanged((user) => {
 			if(user) {
 				setLogged(true)
+				setUserObj(user);
 			} else {
 				setLogged(false)
 			}
@@ -20,7 +22,7 @@ function App() {
 	
   return (
 	<>
-		{Init ? <AppRouter Logged={Logged}/> : "Initializing..."}
+		{Init ? <AppRouter Logged={Logged} userObj={UserObj} /> : "Initializing..."}
 		<footer>&copy; Twitter Clone {new Date().getFullYear()}</footer>
   	</>
   )
