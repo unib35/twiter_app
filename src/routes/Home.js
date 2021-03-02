@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react';
-import { dbService } from '../fbase';
+import { v4 as uuidv4 } from 'uuid';
+import { dbService, storageService } from '../fbase';
 import NweetComp from 'components/Nweet'
 
 function Home(props) {
@@ -20,12 +21,24 @@ function Home(props) {
 	
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		await dbService.collection("Nweets").add({
+		let AttachmentURL = "";
+		if(Attachment !== "") {
+			const AttachmentRef = storageService
+				.ref()
+				.child(`${props.userObj.uid}/${uuidv4()}`)
+			const response = await AttachmentRef.putString(Attachment, "data_url")
+			//nweet에 사진을 넣는 방식 => 사진 URL을 먼저 따온후 Nweet에 사진 URL을 넘겨줌
+			AttachmentURL = await response.ref.getDownloadURL()
+		}
+		const AttachmentNweet = {
 			text: Nweet,
 			createdAt: Date.now(),
-			creatorId: props.userObj.uid
-		})
+			creatorId: props.userObj.uid,
+			AttachmentURL
+		}
+		await dbService.collection("Nweets").add(AttachmentNweet);
 		setNweet("");
+		setAttachment("");
 	}
 	
 	const onChange = (e) => {
@@ -76,7 +89,7 @@ function Home(props) {
 				/>
 				<input
 					type="submit"
-					value="Nweet"
+					value="Upload"
 				/>
 				<br />
 				<input

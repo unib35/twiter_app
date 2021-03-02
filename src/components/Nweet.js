@@ -57,6 +57,17 @@ function NweetComp({NweetObj, Owner}) {
 				) : (
 				<>
 					<h4>{NweetObj.text}</h4>
+					{NweetObj.AttachmentURL &&
+						<>
+						<img 
+							src={NweetObj.AttachmentURL}
+							alt="img"
+							width="80px"
+							height="50px"
+						/>
+						<br />
+						</>
+					}
 					{Owner && (
 						<>
 						<button onClick={onDelete}>Delete Nweet</button>
