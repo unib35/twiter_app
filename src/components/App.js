@@ -23,7 +23,7 @@ function App() {
   return (
 	<>
 		{Init ? <AppRouter Logged={Logged} userObj={UserObj} /> : "Initializing..."}
-		<footer>&copy; Twitter Clone {new Date().getFullYear()}</footer>
+		
   	</>
   )
 	

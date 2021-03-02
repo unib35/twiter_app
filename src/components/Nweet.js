@@ -40,8 +40,17 @@ function NweetComp({NweetObj, Owner}) {
 				Edit ? (
 					<>
 					<form onSubmit={onSubmit}>
-						<input type="text" placeholder="Edit Your nweet"value={NewNweet} required onChange={onChange}/>
-					<input type="submit" value="Update Nweet" />
+						<input
+							type="text"
+							placeholder="Edit Your nweet"
+							value={NewNweet}
+							onChange={onChange}
+							required
+						/>
+						<input 
+							type="submit"
+							value="Update Nweet"
+						/>
 					</form>
 					<button onClick={toggleEditing}>Cancel</button>
 					</>
