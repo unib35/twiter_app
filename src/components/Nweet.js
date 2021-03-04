@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { dbService } from 'fbase'
+import { dbService, storageService } from 'fbase'
 
 function NweetComp({NweetObj, Owner}) {
 	
@@ -13,6 +13,7 @@ function NweetComp({NweetObj, Owner}) {
 		if(ok) {
 			//delete
 			await dbService.doc(`Nweets/${NweetObj.id}`).delete();
+			await storageService.refFromURL(NweetObj.AttachmentURL).delete();
 		}
 	}
 	

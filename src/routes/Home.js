@@ -6,7 +6,7 @@ import NweetComp from 'components/Nweet'
 function Home(props) {
 	const [Nweet, setNweet] = useState("");
 	const [Nweets, setNweets] = useState([]);
-	const [Attachment, setAttachment] = useState(null);
+	const [Attachment, setAttachment] = useState("");
 	
 	
 	useEffect(() => {
@@ -74,7 +74,8 @@ function Home(props) {
 	}
 	
 	const onClearPhoto = () => {
-		setAttachment(null)
+		setAttachment("")
+		window.location.reload(false);
 	}
 	
 	return (

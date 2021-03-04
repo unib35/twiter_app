@@ -5,20 +5,20 @@ import Home from '../routes/Home';
 import Profile from '../routes/Profile';
 import Navigation from 'components/Navigation'
 
-const AppRouter = (props) => {	
+const AppRouter = ({userObj, Logged, refreshUser}) => {	
 	
 	return (
 		<Router>
 			{/*Navigation이 실행되려면 props.Logged가 true 여야 된다.*/}
-			{props.Logged && <Navigation />}
+			{Logged && <Navigation userObj={userObj}/>}
 			<Switch>
-				{props.Logged ? (
+				{Logged ? (
 					<>
 						<Route exact path="/">
-							<Home userObj={props.userObj} />
+							<Home userObj={userObj} />
 						</Route>
 						<Route exact path="/profile">
-						<Profile />
+						<Profile userObj={userObj} refreshUser={refreshUser} />
 						</Route>
 						<Redirect from='*' to ='/' />
 					</>
